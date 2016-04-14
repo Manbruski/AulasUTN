@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Carrera;
-class CarrerasController extends Controller
+use App\Sede;
+class SedesController extends Controller
 {
-    protected $carrera;
-    public function __construct(Carrera $carrera){
-        $this->carrera = $carrera; 
+    protected $sede;
+    public function __construct(Sede $sede){
+        $this->sede = $sede;
     }
     /**
      * Display a listing of the resource.
@@ -19,8 +19,8 @@ class CarrerasController extends Controller
      */
     public function index()
     {
-        $carreras = $this->carrera->orderBy('id')->paginate(7);
-        return view('carreras.index', compact('carreras'));
+        $sedes = $this->sede->orderBy('id')->paginate(7);
+        return view('sedes.index', compact('sedes'));
     }
 
     /**
@@ -30,7 +30,7 @@ class CarrerasController extends Controller
      */
     public function create()
     {
-        return view('carreras.create');
+        return view('sedes.create');
     }
 
     /**
@@ -41,11 +41,10 @@ class CarrerasController extends Controller
      */
     public function store(Request $request)
     {
-        $carrera         = $this->carrera;        
-        $carrera->nombre = $request->nombre;
-        $carrera->codigo = $request->codigo;
-        $carrera->save();
-        return redirect('carreras');
+        $sede = $this->sede;
+        $sede->descripcion = $request->descripcion;
+        $sede->save();
+        return redirect('sedes');
     }
 
     /**
@@ -56,8 +55,8 @@ class CarrerasController extends Controller
      */
     public function edit($id)
     {
-        $carrera = $this->carrera->find($id);
-        return view('carreras.edit', compact('carrera'));
+        $sede = $this->sede->find($id);
+        return view('sedes.edit', compact('sede'));
     }
 
     /**
@@ -69,11 +68,10 @@ class CarrerasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $carrera = $this->carrera->find($id);
-        $carrera->nombre = $request->nombre;
-        $carrera->codigo = $request->codigo;
-        $carrera->save();
-        return redirect('carreras');
+        $sede = $this->sede->find($id);
+        $sede->descripcion = $request->descripcion;
+        $sede->save();
+        return redirect('sedes');
     }
 
     /**
@@ -84,8 +82,8 @@ class CarrerasController extends Controller
      */
     public function destroy($id)
     {
-        $carrera = $this->carrera->find($id);
-        $carrera->delete();
-        return redirect('carreras');
+        $sede = $this->sede->find($id);
+        $sede->delete();
+        return redirect('sedes');
     }
 }

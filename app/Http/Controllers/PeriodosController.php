@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Carrera;
-class CarrerasController extends Controller
+use App\Periodo;
+class PeriodosController extends Controller
 {
-    protected $carrera;
-    public function __construct(Carrera $carrera){
-        $this->carrera = $carrera; 
+    protected $periodo;
+    public function __construct(Periodo $periodo){
+        $this->periodo = $periodo;
     }
     /**
      * Display a listing of the resource.
@@ -19,8 +19,8 @@ class CarrerasController extends Controller
      */
     public function index()
     {
-        $carreras = $this->carrera->orderBy('id')->paginate(7);
-        return view('carreras.index', compact('carreras'));
+        $periodos = $this->periodo->orderBy('id')->paginate(7);
+        return view('periodos.index', compact('periodos'));
     }
 
     /**
@@ -30,7 +30,7 @@ class CarrerasController extends Controller
      */
     public function create()
     {
-        return view('carreras.create');
+        return view('periodos.create');
     }
 
     /**
@@ -41,11 +41,12 @@ class CarrerasController extends Controller
      */
     public function store(Request $request)
     {
-        $carrera         = $this->carrera;        
-        $carrera->nombre = $request->nombre;
-        $carrera->codigo = $request->codigo;
-        $carrera->save();
-        return redirect('carreras');
+        $periodo = $this->periodo;
+        $periodo->nombre       = $request->nombre;
+        $periodo->fecha_inicio = $request->fecha_inicio;
+        $periodo->fecha_fin    = $request->fecha_fin;
+        $periodo->save();
+        return redirect('periodos');
     }
 
     /**
@@ -56,8 +57,7 @@ class CarrerasController extends Controller
      */
     public function edit($id)
     {
-        $carrera = $this->carrera->find($id);
-        return view('carreras.edit', compact('carrera'));
+        $periodo = $this->periodo->find('id');
     }
 
     /**
@@ -69,11 +69,12 @@ class CarrerasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $carrera = $this->carrera->find($id);
-        $carrera->nombre = $request->nombre;
-        $carrera->codigo = $request->codigo;
-        $carrera->save();
-        return redirect('carreras');
+        $periodo = $this->periodo->find('id');
+        $periodo->nombre       = $request->nombre;
+        $periodo->fecha_inicio = $request->fecha_inicio;
+        $periodo->fecha_fin    = $request->fecha_fin;
+        $periodo->save();
+        return redirect('periodos');
     }
 
     /**
@@ -84,8 +85,8 @@ class CarrerasController extends Controller
      */
     public function destroy($id)
     {
-        $carrera = $this->carrera->find($id);
-        $carrera->delete();
-        return redirect('carreras');
+        $periodo = $this->periodo->find('id');
+        $periodo->delete();
+        return redirect('periodos');
     }
 }

@@ -7,9 +7,9 @@
 		<p class="category">Crear nueva aula</p>
 	</div>
 	<div class="content">
-        <form action="/aulas/{{$aula->id}}" method="POST">
-           <input type="hidden" name="_method" value="PUT">
-           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<form action="/aulas/{{$aula->id}}" method="POST">
+			<input type="hidden" name="_method" value="PUT">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
 					<div class="form-group ">
@@ -17,16 +17,19 @@
 						<input type="text" class="form-control" name="codigo" placeholder="Introducir código" required="required" value="{{$aula->codigo}}">	
 					</div>
 					<div class="form-group ">
-						<label class="checkbox ">Es aula
-							<input type="checkbox" name="es_aula" data-toggle="checkbox" >
+						<label class="checkbox {{ $aula->es_aula == 1 ? 'checked' : '' }}">Es aula
+							<input type="checkbox" name="es_aula" data-toggle="checkbox" value="{{$aula->es_aula}}">
 						</label>
 					</div>
 					<div class="form-group ">
 						<label>Recinto:</label>
 						<select name="recinto_id" class="form-control" required="required">
-							@foreach($recintos as $recinto)
-							@if($aula->recinto->id === $recinto->id)
-							<option value="{{$recinto->id}}">{{$aula->recinto->nombre}}</option>
+							@foreach ($recintos as $recinto)
+							@if($recinto->id === $aula->recinto_id)
+							<option value="{{$aula->recinto_id}}" selected>{{$recinto->nombre}}</option>
+							@else
+							<option value="{{$recinto->id}}" >{{$recinto->nombre}}</option>
+							@endif
 							@endforeach
 						</select>
 					</div>

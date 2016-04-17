@@ -13,7 +13,7 @@
         </div>
     </div>
     
-<!--     <div class="header">
+     <div class="header">
         <a href="/aulas/create">
             <button class="btn btn-info btn-fill pull-right">Nueva Aula</button>
         </a>
@@ -61,11 +61,11 @@
 <div class="text-right">
     {{$aulas->links()}}
 </div>
- -->
+ 
 </div>
 
 @endsection
 
 @section('javascripts')
-<script src="/assets/js/aulas.js"></script>
+<!--<script src="/assets/js/aulas.js"></script>-->
 @endsection

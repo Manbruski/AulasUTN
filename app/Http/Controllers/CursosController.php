@@ -42,7 +42,7 @@ class CursosController extends Controller
      */
     public function store(Request $request)
     {
-        $curso         = $this->curso;        
+        $curso  = $this->curso;
         $curso->nombre = $request->nombre;
         $curso->codigo = $request->codigo;
         $curso->save();

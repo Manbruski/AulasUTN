@@ -17,10 +17,14 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
-Route::resource('/carreras', 'CarrerasController');
-Route::resource('/cursos', 'CursosController');
-Route::resource('/perfiles', 'PerfilesController');
-Route::resource('/horarios', 'HorariosController');
-Route::resource('/sedes','SedesController');
-Route::resource('/periodos','PeriodosController');
+Route::group(['middleware' => ['auth']], function () {
+    //
+    Route::get('/home', 'HomeController@index');
+    Route::resource('/carreras', 'CarrerasController');
+    Route::resource('/cursos', 'CursosController');
+    Route::resource('/perfiles', 'PerfilesController');
+    Route::resource('/horarios', 'HorariosController');
+    Route::resource('/sedes','SedesController');
+    Route::resource('/periodos','PeriodosController');
+
+});

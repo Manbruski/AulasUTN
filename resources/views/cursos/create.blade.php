@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
 					<div class="form-group">
-						<label>Nombre de la carrera:</label>
+						<label>Nombre del curso:</label>
 						<input type="text" class="form-control" name="nombre" placeholder="Introducir nombre" required="required">
 					</div>
 					<div class="form-group">

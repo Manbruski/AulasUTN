@@ -17,7 +17,7 @@
 						<input type="text" class="form-control" name="codigo" placeholder="Introducir código" required="required" value="{{$aula->codigo}}">	
 					</div>
 					<div class="form-group ">
-						<label class="checkbox {{ $aula->es_aula == 1 ? 'checked' : '' }}">Es aula
+						<label class="checkbox">Es aula
 							<input type="checkbox" name="es_aula" data-toggle="checkbox" value="{{$aula->es_aula}}">
 						</label>
 					</div>

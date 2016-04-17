@@ -17,17 +17,20 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => ['auth']], function () {
+    //
+    Route::get('/home', 'HomeController@index');
+    Route::resource('/carreras', 'CarrerasController');
+    Route::resource('/cursos', 'CursosController');
+    Route::resource('/perfiles', 'PerfilesController');
+    Route::resource('/horarios', 'HorariosController');
+    Route::resource('/sedes','SedesController');
+    Route::get('/sedes/{id}/recintos', 'SedesController@RecintosPorSede');
+    Route::resource('/periodos','PeriodosController');
+    Route::resource('/aulas','AulasController');
+    Route::get('/recintos/{id}/aulas', 'RecintosController@AulasPorRecintos');
+    Route::resource('/usuarios','UsuariosController');
+    Route::resource('/reservaciones', 'ReservacionesController');
+    Route::resource('/recintos', 'RecintosController');
 
-Route::resource('/carreras', 'CarrerasController');
-Route::resource('/cursos', 'CursosController');
-Route::resource('/perfiles', 'PerfilesController');
-Route::resource('/horarios', 'HorariosController');
-Route::resource('/sedes','SedesController');
-Route::get('/sedes/{id}/recintos', 'SedesController@RecintosPorSede');
-Route::resource('/periodos','PeriodosController');
-Route::resource('/aulas','AulasController');
-Route::get('/recintos/{id}/aulas', 'RecintosController@AulasPorRecintos');
-Route::resource('/usuarios','UsuariosController');
-Route::resource('/reservaciones', 'ReservacionesController');
-Route::resource('/recintos', 'RecintosController');
+});

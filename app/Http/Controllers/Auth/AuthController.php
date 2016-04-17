@@ -37,7 +37,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+      //  $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
     /**
@@ -50,7 +50,7 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users|regex:/(.*)\@utn\.ac\.cr$/i',
             'password' => 'required|min:6|confirmed',
         ]);
     }

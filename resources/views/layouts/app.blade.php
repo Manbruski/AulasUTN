@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>Aulas UTN</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-  <meta name="viewport" content="width=device-width" />  
+  <meta name="viewport" content="width=device-width" />
   <!-- Bootstrap core CSS     -->
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Animation library for notifications   -->
@@ -59,8 +59,8 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-12">              
-                @yield('content')                        
+            <div class="col-md-12">
+                @yield('content')
             </div>
           </div>
         </div>
@@ -84,5 +84,6 @@
 <script src="/assets/js/bootstrap-notify.js"></script>
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="/assets/js/light-bootstrap-dashboard.js"></script>
+<script src="/assets/js/notification.js"></script>
 @yield('scripts')
 </html>

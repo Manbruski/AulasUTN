@@ -45,11 +45,12 @@ class AulasController extends Controller
      */
     public function store(Request $request)
     {
-        $aula         = $this->aula;        
-        $aula->codigo = $request->codigo;
-        $aula->recinto_id = $request->recinto_id;
+        $aula              = $this->aula;        
+        $aula->codigo      = $request->codigo;
+        $aula->es_aula     = $request->es_aula;
+        $aula->recinto_id  = $request->recinto_id;
         $aula->descripcion = $request->descripcion;
-        $aula->observaciones = $request->observaciones;
+        $aula->observacion = $request->observacion;
         $aula->save();
         return redirect('aulas');
     }

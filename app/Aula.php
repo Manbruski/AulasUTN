@@ -12,7 +12,6 @@ class Aula extends Model
 
     public function recinto()
     {
-    	//return $this->hasOne('App\Recinto', 'id', 'recinto_id');
-        return $this->belongsTo('App\Recinto');
+        return $this->hasOne('App\Recinto', 'id', 'recinto_id');
     }
 }

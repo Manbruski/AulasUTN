@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aula extends Model
 {
-    protected $table = 'aulas';
+	protected $table = 'aulas';
 	protected $fillable = ['codigo', 'recinto_id', 'descripcion', 'observacion'];
 	public $timestamps = false;
+
+    public function recinto()
+    {
+    	//return $this->hasOne('App\Recinto', 'id', 'recinto_id');
+        return $this->belongsTo('App\Recinto');
+    }
 }

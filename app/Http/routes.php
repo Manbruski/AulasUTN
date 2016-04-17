@@ -24,3 +24,4 @@ Route::resource('/perfiles', 'PerfilesController');
 Route::resource('/horarios', 'HorariosController');
 Route::resource('/sedes','SedesController');
 Route::resource('/periodos','PeriodosController');
+Route::resource('/aulas','AulasController');

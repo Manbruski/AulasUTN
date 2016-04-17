@@ -25,6 +25,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/perfiles', 'PerfilesController');
     Route::resource('/horarios', 'HorariosController');
     Route::resource('/sedes','SedesController');
-    Route::resource('/periodos','PeriodosController');
 
 });

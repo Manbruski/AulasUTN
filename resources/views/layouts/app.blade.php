@@ -83,4 +83,5 @@
 <script src="/assets/js/bootstrap-notify.js"></script>
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="/assets/js/light-bootstrap-dashboard.js"></script>
+<script src="/assets/js/notification.js"></script>
 </html>

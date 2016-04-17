@@ -7,23 +7,33 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Aula;
 use App\Recinto;
+use App\Sede;
 
 class AulasController extends Controller
 {
     protected $aula;
-    public function __construct(Aula $aula, Recinto $recinto){
+    protected $recinto;
+    protected $sede;
+    public function __construct(Aula $aula, Recinto $recinto, Sede $sede){
         $this->aula = $aula;
         $this->recinto = $recinto;
+        $this->sede = $sede;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $aulas = $this->aula->with('recinto')->orderBy('id')->paginate(7);
-        return view('aulas.index', compact('aulas'));
+        if ($request->isJson()) {
+            $aulas = $this->aula->aulasPorSede($request['sedeId']);
+            return response()->json(['aulas' => $aulas]);
+        }
+        
+
+        $sedes = $this->sede->all();
+        return view('aulas.index', compact('sedes'));
     }
 
     /**
@@ -45,13 +55,8 @@ class AulasController extends Controller
      */
     public function store(Request $request)
     {
-        $aula              = $this->aula;        
-        $aula->codigo      = $request->codigo;
-        $aula->es_aula     = $request->es_aula;
-        $aula->recinto_id  = $request->recinto_id;
-        $aula->descripcion = $request->descripcion;
-        $aula->observacion = $request->observacion;
-        $aula->save();
+        $request['es_aula'] = $request->input('es_aula') === 'on';
+        $this->aula->create($request->all());
         return redirect('aulas');
     }
     
@@ -63,7 +68,9 @@ class AulasController extends Controller
      */
     public function edit($id)
     {
-        $aula = $this->aula->find($id);        
+        $recintos = $this->recinto->all();
+        $aula = $this->aula->with('recinto')->find($id); 
+        return View('aulas.edit', compact('aula', 'recintos'));       
     }
 
     /**
@@ -75,7 +82,9 @@ class AulasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request['es_aula'] = $request->input('es_aula') === 'on';
+        $this->aula->create($request->all());
+        return redirect('aulas');
     }
 
     /**

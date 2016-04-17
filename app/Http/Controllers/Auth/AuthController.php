@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Perfil;
 
 class AuthController extends Controller
 {
@@ -49,8 +50,8 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users|regex:/(.*)\@utn\.ac\.cr$/i',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users|regex:/(.*)\@utn\.ac\.cr$/i',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -64,12 +65,50 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'celular'=>$data['celular'],
-            'perfil_id'=>$data['perfil_id'],
-            'es_docente'=>$data['es_docente'],
-            'password' => bcrypt($data['password']),
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'celular'   => $data['celular'],
+            'perfil_id' => $data['perfil_id'],
+            'es_docente'=> $data['es_docente'],
+            'password'  => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        if (property_exists($this, 'registerView')) {
+            return view($this->registerView);
+        }
+        $perfiles = Perfil::all();
+        return view('auth.register', compact('perfiles'));
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $password = str_random(8);
+        $request['password'] = $password;
+        $request['password_confirmation'] = $password;
+        $request['es_docente'] = $request->input('es_docente') === 'on';
+        $request['activo'] = $request->input('es_aula') === 'on';
+
+        $validator = $this->validator($request->all());
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+                );
+        }
+        Auth::guard($this->getGuard())->login($this->create($request->all()));
+        return redirect($this->redirectPath());
     }
 }

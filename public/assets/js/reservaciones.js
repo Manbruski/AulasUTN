@@ -1,5 +1,22 @@
 $(document).ready(function() {
   initCalendar();
+
+  $('#sedes').change(function(e){
+
+
+    // var text = $("#sedes :selected").text();
+    // $('#recintos').remove();
+    // $('#aulas').remove();
+
+    var sedeId = $("#sedes").val();
+    $.getJSON( "recintos", {sede: sedeId })
+    .done(function(recintos) {
+      console.log( "second success" );
+    }).fail(function(error) {
+      console.log( "error" );
+    });
+
+  });
 });
 
 function initCalendar(){
@@ -12,7 +29,7 @@ function initCalendar(){
         right:  'today prev,next'
       },
       allDaySlot: false,
-      slotEventOverlap: false,
+      eventOverlap: false,
       defaultView: 'agendaWeek',
       editable: true,
 
@@ -38,34 +55,21 @@ function initCalendar(){
       ],
 
 
-      // selectable: true,
-      // selectHelper: true,
-
-      // select: function(start, end, allDay) {
-      //   var title = prompt("Ingrese un título para la reservación", '');
-      // 	if (title) {
-      // 		calendar.fullCalendar('renderEvent',
-      // 			{
-      // 				title: title,
-      // 				start: start,
-      // 				end: end,
-      // 				allDay: allDay
-      // 			},
-      // 			true // make the event "stick"
-      // 		);
-      // 	}
-      // 	calendar.fullCalendar('unselect');
-      // },
-
-
+      defaultTimedEventDuration: '00:30:00',
       dayClick: function(date, jsEvent, view) {
         var descripcion = prompt("Ingrese una descripción corta para la reservación", '');
-        if (descripcion !== null && descripcion !== '') {
+        if (descripcion) {
           view.calendar.renderEvent({
             title: descripcion,
-            start: date.format() // will be parsed
+            start: date.format(),
           });
         }
+      },
+      eventResize: function(event, delta, revertFunc) {
+        console.log(event.title + " end is now " + event.end.format());
+      },
+      eventDrop: function(event, delta, revertFunc) {
+        console.log(event.title + " was dropped on " + event.start.format());
       }
     });
   }

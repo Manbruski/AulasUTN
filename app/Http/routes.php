@@ -20,6 +20,4 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 
-Route::get('/eventos', function(){
-  return View('events.index');
-});
+Route::resource('/reservaciones', 'ReservacionesController');

@@ -2,20 +2,14 @@
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Sede;
 use App\Recinto;
-use App\Periodo;
-use App\Aula;
 
-class ReservacionesController extends Controller
+class RecintosController extends Controller
 {
-  protected $sede, $recinto, $periodo, $aula;
+  protected $recinto;
 
-  public function __construct(Sede $sede, Recinto $recinto, Periodo $periodo, Aula $aula) {
-    $this->sede    = $sede;
+  public function __construct(Recinto $recinto) {
     $this->recinto = $recinto;
-    $this->periodo = $periodo;
-    $this->aula    = $aula;
   }
 
   /**
@@ -25,9 +19,7 @@ class ReservacionesController extends Controller
   */
   public function index()
   {
-    $sedes    = $this->sede->sedesAll();
-    $periodos = $this->periodo->periodosAll();
-    return View('reservaciones.index', compact('sedes', 'periodos'));
+    //
   }
 
   /**
@@ -59,7 +51,7 @@ class ReservacionesController extends Controller
   */
   public function show($id)
   {
-    //
+
   }
 
   /**
@@ -94,5 +86,11 @@ class ReservacionesController extends Controller
   public function destroy($id)
   {
     //
+  }
+
+  public function AulasPorRecintos($id) {
+    $recinto = $this->recinto->find($id);
+    $aulas   = $recinto->aulas;
+    return response()->json(['aulas' => $aulas]);
   }
 }

@@ -1,6 +1,4 @@
-<?php
-
-namespace App;
+<?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,5 +11,9 @@ class Recinto extends Model
 	public function aula()
 	{
 		return $this->hasOne('App\Aula');
+	}
+
+	public function aulas() {
+		return $this->hasMany('App\Aula', 'recinto_id', 'id');
 	}
 }

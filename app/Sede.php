@@ -11,4 +11,8 @@ class Sede extends Model
     public function sedesAll(){
       return $this->orderBy('descripcion')->get();
     }
+
+    public function recintos() {
+      return $this->hasMany('App\Recinto', 'sede_id', 'id');
+    }
 }

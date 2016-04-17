@@ -1,11 +1,9 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Sede;
+
 class SedesController extends Controller
 {
     protected $sede;
@@ -85,5 +83,11 @@ class SedesController extends Controller
         $sede = $this->sede->find($id);
         $sede->delete();
         return redirect('sedes');
+    }
+
+    public function RecintosPorSede($id) {
+      $sede = $this->sede->find($id);
+      $recintos = $sede->recintos;
+      return response()->json(['recintos' => $recintos]);
     }
 }

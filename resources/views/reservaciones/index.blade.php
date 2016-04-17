@@ -11,53 +11,44 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="sedes">Seleccione una sede</label>
-          <select id="sedes" class="form-control">
-            @foreach ($sedes as $sede)
-              <option value="{{ $sede->id }}">{{ $sede->descripcion }}</option>
+          <label for="periodos">Seleccione un periodo</label>
+          <select id="periodos" class="form-control">
+            @foreach ($periodos as $periodo)
+              <option value="{{ $periodo->id }}">{{ $periodo->nombre }}</option>
             @endforeach
           </select>
         </div>
       </div>
-
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label for="aulas">Seleccione un aula</label>
-          <select id="aulas" class="form-control">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
           <label for="recintos">Seleccione un recinto</label>
-          <select id="recintos" class="form-control">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+          <select id="recintos" class="form-control"></select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="sedes">Seleccione una sede</label>
+          <select id="sedes" class="form-control">
+            <option disabled selected value> -- Seleccione una Sede -- </option>
+            @foreach ($sedes as $sede)
+            <option value="{{ $sede->id }}">{{ $sede->descripcion }}</option>
+            @endforeach
           </select>
         </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="periodos">Seleccione un periodo</label>
-          <select id="peridos" class="form-control">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-          </select>
+          <label for="aulas">Seleccione un aula</label>
+          <select id="aulas" class="form-control"></select>
         </div>
       </div>
     </div>
+      <button id="ver-calendario" class="btn btn-info btn-fill pull-right">Ver Reservaciones</button>
+      <div class="clearfix"></div>
   </div>
+
 
 
   <hr>

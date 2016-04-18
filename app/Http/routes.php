@@ -9,12 +9,13 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-*/Route::post('login', 'Auth\AuthController@postLogin');
+*/
+Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('logout', 'Auth\AuthController@logout');
     Route::get('/', function () { return redirect('/reservaciones'); });
-    Route::get('/home', function () { return redirect('/reservaciones');});
+    Route::get('/home', function () { return redirect('/reservaciones'););
     Route::get('/sedes/{id}/recintos', 'SedesController@RecintosPorSede');
     Route::get('/recintos/{id}/aulas', 'RecintosController@AulasPorRecintos');
     Route::resource('/reservaciones', 'ReservacionesController');

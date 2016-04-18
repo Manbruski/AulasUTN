@@ -55,7 +55,7 @@ class AulasController extends Controller
         $this->aula->create($request->all());
         return redirect('aulas');
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -65,8 +65,8 @@ class AulasController extends Controller
     public function edit($id)
     {
         $recintos = $this->recinto->all();
-        $aula = $this->aula->with('recinto')->find($id); 
-        return View('aulas.edit', compact('aula', 'recintos'));       
+        $aula = $this->aula->with('recinto')->find($id);
+        return View('aulas.edit', compact('aula', 'recintos'));
     }
 
     /**

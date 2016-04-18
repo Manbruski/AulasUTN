@@ -32,5 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/usuarios','UsuariosController');
     Route::resource('/reservaciones', 'ReservacionesController');
     Route::resource('/recintos', 'RecintosController');
+    Route::resource('cursos_carreras','CursoCarreraController');
+    Route::resource('usuario_curso_carrera','Usuario_Curso_CarreraController');
 
 });

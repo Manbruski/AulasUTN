@@ -1,8 +1,7 @@
-<?php
-
-namespace App;
+<?php namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Perfil;
 
 class User extends Authenticatable
 {
@@ -24,8 +23,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function perfil()
-    {
-        return $this->hasOne('App\Perfil', 'id', 'perfil_id');
+    public function perfil(){
+      return $this->hasOne('App\Perfil', 'id', 'perfil_id');
     }
 }
+

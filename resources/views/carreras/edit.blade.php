@@ -16,13 +16,13 @@
                     <label>Nombre de la carrera:</label>
                     <input type="text" class="form-control" name="nombre" placeholder="Introducir nombre" value="{{$carrera->nombre}}" required="required">
                 </div>
-                
+
                 <div class="form-group">
                     <label>Código:</label>
                     <input type="text" class="form-control" name="codigo" placeholder="codigo" value="{{$carrera->codigo}}" required="required">
                 </div>
                 <button type="submit" class="btn btn-info btn-fill pull-right">Guardar</button>
-                <div class="clearfix"></div> 
+                <div class="clearfix"></div>
             </div>
         </div>
     </form>

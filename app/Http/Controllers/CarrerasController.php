@@ -10,7 +10,7 @@ class CarrerasController extends Controller
 {
     protected $carrera;
     public function __construct(Carrera $carrera){
-        $this->carrera = $carrera; 
+        $this->carrera = $carrera;
     }
     /**
      * Display a listing of the resource.
@@ -41,7 +41,7 @@ class CarrerasController extends Controller
      */
     public function store(Request $request)
     {
-        $carrera         = $this->carrera;        
+        $carrera         = $this->carrera;
         $carrera->nombre = $request->nombre;
         $carrera->codigo = $request->codigo;
         $carrera->save();

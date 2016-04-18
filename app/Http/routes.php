@@ -12,7 +12,10 @@
 */
 Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('login', 'Auth\AuthController@getLogin');
+
 Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/usuarios/{id}/actualizar', 'UsuariosController@actualizar');
+    Route::PUT('/usuarios/{id}', 'UsuariosController@updateU');
     Route::get('logout', 'Auth\AuthController@logout');
     Route::get('/', function () { return redirect('/reservaciones'); });
     Route::get('/home', function () { return redirect('/reservaciones'); });
@@ -30,5 +33,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
       Route::resource('/usuarios','UsuariosController');
       Route::resource('/recintos', 'RecintosController');
       Route::resource('/cursos_carreras', 'CursoCarreraController');
+
+
     });
 });

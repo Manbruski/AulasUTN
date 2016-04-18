@@ -110,6 +110,9 @@ class UsuarioCursoCarrerasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $uccarrera = $this->uccarrera->find($id);
+        $uccarrera->delete();
+        return redirect('asignaciones');
+
     }
 }

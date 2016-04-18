@@ -88,17 +88,6 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -106,7 +95,12 @@ class UsuariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = $this->usuario->find($id);
+        $perfiles = $this->perfil->all();
+        if ($usuario['id'] == 1) {
+            return redirect('/usuarios');
+        }
+        return view('usuarios.edit', compact('usuario', 'perfiles'));
     }
 
     /**
@@ -118,7 +112,10 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-      //
+        $request['es_docente'] = $request->input('es_docente') === 'on';
+        $request['activo'] = $request->input('activo') === 'on';
+        $this->usuario->find($id)->update($request->all());
+        return redirect('usuarios');
     }
 
     /**
@@ -129,8 +126,12 @@ class UsuariosController extends Controller
      */
     public function destroy($id)
     {
-        $this->usuario->find('id')->delete();
 
+        $usuario = $this->usuario->find($id);
+        if ($usuario['id'] == 1) {
+            return redirect('usuarios');
+        }
+        $usuario->delete();
         return redirect('usuarios');
     }
     public function actualizar($id)
@@ -140,15 +141,15 @@ class UsuariosController extends Controller
     }
     public function updateU(Request $request, $id)
     {
-      
+
       $usuario = $this->usuario->find($id);
       $usuario->name = $request->name;
       $usuario->celular = $request->celular;
       if ($request->password!="") {
-      $usuario->password = Hash::make($request->password);
+          $usuario->password = Hash::make($request->password);
       }
       $usuario->save();
       return redirect('reservaciones');
-    }
+  }
 
 }

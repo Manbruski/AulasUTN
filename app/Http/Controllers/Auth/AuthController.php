@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Perfil;
+use Illuminate\Http\Request;
+use Illuminate\Mail;
+
 
 class AuthController extends Controller
 {
@@ -38,7 +42,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-      //  $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+       $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
     /**
@@ -51,7 +55,7 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users|regex:/(.*)\@utn\.ac\.cr$/i',
+          //  'email'    => 'required|email|max:255|unique:users|regex:/(.*)\@utn\.ac\.cr$/i',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -108,7 +112,21 @@ class AuthController extends Controller
                 $request, $validator
                 );
         }
-        Auth::guard($this->getGuard())->login($this->create($request->all()));
-        return redirect($this->redirectPath());
+
+        $this->create($request->all());
+        $data = array(
+            'name' => $request->name,
+            'password'=>$password,
+            'correo'=>$request->email,
+        );
+
+        \Mail::queue('mails.welcome', $data, function ($message) use ($data) {
+
+            $message->from('root.admtiempos@gmail.com', 'Registro Control Aulas');
+
+            $message->to($data['correo'])->subject('Cuenta Registrada');
+
+        });
+        return redirect('/');
     }
 }

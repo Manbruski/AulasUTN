@@ -14,11 +14,24 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::auth();
+Route::get('login', [
+    'uses'=>'Auth\AuthController@getLogin',
+    'as' => 'login'
+]);
+Route::post('login', 'Auth\AuthController@postLogin');
 
 Route::group(['middleware' => ['auth']], function () {
     //
+    Route::get('logout', [
+        'uses'=>'Auth\AuthController@logout',
+        'as'=>'logout'
+    ]);
+
+    Route::get('register', [
+        'uses'=>'Auth\AuthController@getRegister',
+        'as'=>'register'
+    ]);
+    Route::post('register', 'Auth\AuthController@postRegister');
     Route::get('/home', 'HomeController@index');
     Route::resource('/carreras', 'CarrerasController');
     Route::resource('/cursos', 'CursosController');

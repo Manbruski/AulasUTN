@@ -2,7 +2,7 @@
 @section('content')
 <div class="card">
     <div class="header">
-        <a href="/register">
+        <a href="/usuarios/create">
             <button class="btn btn-info btn-fill pull-right">Nuevo Usuario</button>
         </a>
         <h4 class="title">Usuarios</h4>

@@ -11,11 +11,22 @@
 |
 */
 Route::auth();
+Route::post('login', 'Auth\AuthController@postLogin');
+Route::get('login', [
+    'uses'=>'Auth\AuthController@getLogin',
+    'as' => 'login'
+]);
 Route::group(['middleware' => ['auth']], function () {
     //
     Route::get('/', function () {
-        return view('welcome');
+        return redirect('/reservaciones');
     });
+
+    Route::get('auth/logout', [
+        'uses'=>'Auth\AuthController@logout',
+        'as'=>'logout'
+    ]);
+
 
     Route::get('/home', 'HomeController@index');
     Route::get('/sedes/{id}/recintos', 'SedesController@RecintosPorSede');

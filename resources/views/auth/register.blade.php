@@ -7,7 +7,7 @@
     <p class="category">Crear nuevo profesor</p>
   </div>
   <div class="content">
-    <form action="{{ url('/register') }}" method="POST">
+    <form action="{{ url('/usuarios') }}" method="POST">
       {!! csrf_field() !!}
       <div class="row">
         <div class="col-md-10 col-md-offset-1">

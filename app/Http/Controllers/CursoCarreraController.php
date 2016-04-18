@@ -12,21 +12,21 @@ class CursoCarreraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-      $cursos_carreras = CursoCarrera::all();
-  $cursos = \DB::table('curso_carreras')
-  ->join('cursos', 'cursos.id', '=', 'curso_carreras.curso_id')
-  ->distinct()
-  ->select('cursos.*')
-  ->get();
-  $carreras = \DB::table('curso_carreras')
-  ->join('carreras', 'carreras.id', '=', 'curso_carreras.carrera_id')
-  ->distinct()
-  ->select('carreras.*')
-  ->get();
-  return view('cursos_carreras.index',compact('cursos_carreras','cursos', 'carreras'));
-    }
+        public function index()
+        {
+          $cursos_carreras = CursoCarrera::all();
+          $cursos = \DB::table('curso_carreras')
+          ->join('cursos', 'cursos.id', '=', 'curso_carreras.curso_id')
+          ->distinct()
+          ->select('cursos.*')
+          ->get();
+          $carreras = \DB::table('curso_carreras')
+          ->join('carreras', 'carreras.id', '=', 'curso_carreras.carrera_id')
+          ->distinct()
+          ->select('carreras.*')
+          ->get();
+          return view('cursos_carreras.index',compact('cursos_carreras','cursos', 'carreras'));
+      }
     /**
      * Show the form for creating a new resource.
      *
@@ -48,10 +48,10 @@ class CursoCarreraController extends Controller
     {
     	$curso_carrera 			       = new CursoCarrera();
       $curso_carrera->curso_id 	 = $request->curso_id;
-    	$curso_carrera->carrera_id  = $request->carrera_id;
+      $curso_carrera->carrera_id  = $request->carrera_id;
       $curso_carrera->save();
-    	return redirect('cursos_carreras');
-    }
+      return redirect('cursos_carreras');
+  }
     /**
      * Show the form for editing the specified resource.
      *
@@ -63,8 +63,8 @@ class CursoCarreraController extends Controller
     	$cursos_carreras = CursoCarrera::find($id);
     	$cursos = Curso::all();
       $carreras = Carrera::all();
-    	return view('cursos_carreras.edit', compact('cursos_carreras', 'cursos', 'carreras'));
-    }
+      return view('cursos_carreras.edit', compact('cursos_carreras', 'cursos', 'carreras'));
+  }
     /**
      * Update the specified resource in storage.
      *
@@ -76,10 +76,10 @@ class CursoCarreraController extends Controller
     {
     	$curso_carrera = CursoCarrera::find($id);
       $curso_carrera->curso_id 	 = $request->curso_id;
-    	$curso_carrera->carrera_id  = $request->carrera_id;
+      $curso_carrera->carrera_id  = $request->carrera_id;
       $curso_carrera->save();
-    	return redirect('cursos_carreras');
-    }
+      return redirect('cursos_carreras');
+  }
     /**
      * Remove the specified resource from storage.
      *

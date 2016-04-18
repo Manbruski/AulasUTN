@@ -29,5 +29,6 @@ Route::group(['middleware' => ['web', 'auth']], function () {
       Route::resource('/aulas','AulasController');
       Route::resource('/usuarios','UsuariosController');
       Route::resource('/recintos', 'RecintosController');
+      Route::resource('/cursos_carreras', 'CursoCarreraController');
     });
 });

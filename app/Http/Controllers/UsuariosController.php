@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
-use Illuminate\Mail;
 use App\Http\Requests;
 use App\User;
 use App\Perfil;
 use Hash;
-
+use Mail;
 class UsuariosController extends Controller
 {
     protected $usuario, $perfil; 
@@ -78,11 +77,11 @@ class UsuariosController extends Controller
             'es_docente'=> $request['es_docente'],
             'activo'    => $request['activo'],
             'password'  => Hash::make($request['password']),
-        ]);
+            ]);
 
         $data = ['name' => $request->name, 'password'=>$password, 'correo'=>$request->email];
-        \Mail::queue('mails.welcome', $data, function ($message) use ($data) {
-            $message->from(env('MAIL_USERNAME'), 'Registro Control Aulas');
+        Mail::queue('mails.welcome', $data, function ($message) use ($data) {
+            $message->from('root.admtiempos@gmail.com', 'Registro Control Aulas');
             $message->to($data['correo'])->subject('Cuenta Registrada');
         });
         return redirect('/usuarios');

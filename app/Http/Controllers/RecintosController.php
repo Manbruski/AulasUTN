@@ -3,13 +3,16 @@
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Recinto;
-
+use App\Sede;
+use App\Horario;
 class RecintosController extends Controller
 {
-  protected $recinto;
+  protected $recinto, $sede, $horario;
 
-  public function __construct(Recinto $recinto) {
+  public function __construct(Recinto $recinto, Sede $sede, Horario $horario) {
     $this->recinto = $recinto;
+    $this->sede    = $sede;
+    $this->horario = $horario;
   }
 
   /**
@@ -19,7 +22,8 @@ class RecintosController extends Controller
   */
   public function index()
   {
-    //
+    $recintos = $this->recinto->recintoAll();
+    return view('recintos.index', compact('recintos'));
   }
 
   /**
@@ -85,7 +89,7 @@ class RecintosController extends Controller
   */
   public function destroy($id)
   {
-    //
+    
   }
 
   public function AulasPorRecintos($id) {

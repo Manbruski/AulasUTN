@@ -27,6 +27,10 @@
           <a href="{{ url('/home') }}" class="simple-text">Aulas UTN</a>
         </div>
         <ul class="nav">
+          <?php $perfil = Auth::user()->perfil; ?>
+          @if ($perfil->nombre === 'Administrador' && $perfil->id === 1)
+
+
           <li>
             <a href="/aulas"><i class="pe-7s-user"></i><p>Aulas</p></a>
           </li>
@@ -46,11 +50,12 @@
             <a href="/usuarios"><i class="pe-7s-users"></i><p>Usuarios</p></a>
           </li>
           <li>
-          <a href="/sedes"><i class="pe-7s-map-marker"></i><p>Sedes</p></a>
+            <a href="/sedes"><i class="pe-7s-map-marker"></i><p>Sedes</p></a>
           </li>
           <li>
             <a href="/horarios"><i class="pe-7s-clock"></i><p>Horarios</p></a>
           </li>
+          @endif
           <li>
             <a href="/reservaciones"><i class="pe-7s-date"></i><p>Reservaciones</p></a>
           </li>

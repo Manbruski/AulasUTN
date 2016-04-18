@@ -26,13 +26,33 @@
         <div class="logo">
           <a href="{{ url('/home') }}" class="simple-text">Aulas UTN</a>
         </div>
-
         <ul class="nav">
-          <li class="active">
-            <a href="dashboard.html"><i class="pe-7s-graph"></i><p>Dashboard</p></a>
+          <li>
+            <a href="/aulas"><i class="pe-7s-user"></i><p>Aulas</p></a>
           </li>
           <li>
-            <a href="user.html"><i class="pe-7s-user"></i><p>User Profile</p></a>
+            <a href="/cursos"><i class="pe-7s-user"></i><p>Cursos</p></a>
+          </li>
+          <li>
+            <a href="/carreras"><i class="pe-7s-user"></i><p>Carreras</p></a>
+          </li>
+          <li>
+            <a href="/perfiles"><i class="pe-7s-id"></i><p>Perfiles</p></a>
+          </li>
+          <li>
+            <a href="/periodos"><i class="pe-7s-date"></i><p>Periodos</p></a>
+          </li>
+          <li>
+            <a href="/usuarios"><i class="pe-7s-users"></i><p>Usuarios</p></a>
+          </li>
+          <li>
+          <a href="/sedes"><i class="pe-7s-map-marker"></i><p>Sedes</p></a>
+          </li>
+          <li>
+            <a href="/horarios"><i class="pe-7s-clock"></i><p>Horarios</p></a>
+          </li>
+          <li>
+            <a href="/reservaciones"><i class="pe-7s-date"></i><p>Reservaciones</p></a>
           </li>
         </ul>
 
@@ -60,7 +80,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
-                @yield('content')
+              @yield('content')
             </div>
           </div>
         </div>
@@ -84,6 +104,5 @@
 <script src="/assets/js/bootstrap-notify.js"></script>
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="/assets/js/light-bootstrap-dashboard.js"></script>
-<script src="/assets/js/notification.js"></script>
 @yield('scripts')
 </html>

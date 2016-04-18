@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\User;
 class UsuariosController extends Controller
 {
 
-    protected $user;
-    public function __construct(User $user){
-        $this->user = $user;
-     
+    protected $usuario;
+    public function __construct(User $usuario){
+        $this->usuario = $usuario;
     }
     /**
      * Display a listing of the resource.
@@ -21,8 +20,8 @@ class UsuariosController extends Controller
      */
     public function index()
     { 
-        $usuarios = $this->usuario->all();
-        return view('usuarios.index', compact('horarios'));
+        $usuarios = $this->usuario->with('perfil')->orderBy('id')->paginate(7);
+        return view('usuarios.index', compact('usuarios'));
 
     }
 
@@ -89,6 +88,8 @@ class UsuariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->usuario->find('id')->delete();
+       
+        return redirect('usuarios');
     }
 }

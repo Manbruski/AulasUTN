@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-@if (Session::has('email'))
-<div id="error">{{$errors->email}}</div>
-@endif
-
 <div class="card col-md-8 col-md-offset-2">
   <div class="header">
     <h4 class="title">Profesor</h4>
@@ -53,3 +49,9 @@
   </div>
 </div>
 @endsection
+@section('scripts')
+@if (count($errors) > 0)
+<script src="/assets/js/notification.js"></script>
+@endif
+@endsection
+

@@ -8,7 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Perfil;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     /*
@@ -53,6 +54,8 @@ class AuthController extends Controller
             'name'     => 'required|max:255',
             'email'    => 'required|email|max:255|unique:users|regex:/(.*)\@utn\.ac\.cr$/i',
             'password' => 'required|min:6|confirmed',
+            'celular'  => 'unique:users',
+            
         ]);
     }
 
@@ -70,6 +73,7 @@ class AuthController extends Controller
             'celular'   => $data['celular'],
             'perfil_id' => $data['perfil_id'],
             'es_docente'=> $data['es_docente'],
+            'activo'    => $data['activo'],
             'password'  => bcrypt($data['password']),
         ]);
     }
@@ -100,7 +104,7 @@ class AuthController extends Controller
         $request['password'] = $password;
         $request['password_confirmation'] = $password;
         $request['es_docente'] = $request->input('es_docente') === 'on';
-        $request['activo'] = $request->input('es_aula') === 'on';
+        $request['activo'] = $request->input('activo') === 'on';
 
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
@@ -108,7 +112,8 @@ class AuthController extends Controller
                 $request, $validator
                 );
         }
-        Auth::guard($this->getGuard())->login($this->create($request->all()));
+        //Auth::guard($this->getGuard())->login($this->create($request->all()));
+        $this->create($request->all());
         return redirect($this->redirectPath());
     }
 }

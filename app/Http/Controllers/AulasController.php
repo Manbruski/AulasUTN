@@ -78,7 +78,8 @@ class AulasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request['es_aula'] = $request->input('es_aula') === 'on';
+        $request->es_aula = $request->input('es_aula') === 'on';
+        
         $this->aula->find($id)->update($request->all());
         return redirect('aulas');
     }

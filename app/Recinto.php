@@ -19,9 +19,8 @@ class Recinto extends Model
 	public function recintoAll()
 	{
 		return $this->join('horarios', 'horarios.id', '=', 'recintos.horario_id')
-					->join('sedes', 'sedes.id', '=', 'recintos.sede_id')
-			->select('horarios.nombre AS horario', 'sedes.descripcion AS sede', 'recintos.*')
-			->orderBy('recintos.id')->paginate(7);
-					
+		->join('sedes', 'sedes.id', '=', 'recintos.sede_id')
+		->select('horarios.nombre AS horario', 'sedes.descripcion AS sede', 'recintos.*')
+		->orderBy('recintos.id')->paginate(7);		
 	}
 }

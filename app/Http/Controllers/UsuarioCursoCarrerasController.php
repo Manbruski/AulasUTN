@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
-class CursoCarrerasController extends Controller
+use App\User;
+use App\UsuarioCursoCarrera;
+use App\CursoCarrera;
+class UsuarioCursoCarrerasController extends Controller
 {
+    protected $user, $cursocarrera, $uccarrera;
+    public function __construct(User $user, CursoCarrera $cursocarrera, UsuarioCursoCarrera $uccarrera)
+    {
+        $this->user = $user;
+        $this->cursocarrera = $cursocarrera;
+        $this->uccarrera = $uccarrera;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +24,9 @@ class CursoCarrerasController extends Controller
      */
     public function index()
     {
-        //
+        $asignaciones = $this->uccarrera->getAll();
+        dd($asignaciones);
+        return view('asignaciones.index', compact('asignaciones'));
     }
 
     /**

@@ -25,7 +25,7 @@ class UsuarioCursoCarrerasController extends Controller
     public function index()
     {
         $asignaciones = $this->uccarrera->getAll();
-        dd($asignaciones);
+
         return view('asignaciones.index', compact('asignaciones'));
     }
 

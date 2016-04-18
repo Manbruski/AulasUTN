@@ -30,13 +30,13 @@
           <?php $perfil = Auth::user()->perfil; ?>
           @if ($perfil->nombre === 'Administrador' && $perfil->id === 1)
           <li>
-            <a href="/aulas"><i class="pe-7s-user"></i><p>Aulas</p></a>
+            <a href="/aulas"><i class="pe-7s-culture"></i><p>Aulas</p></a>
           </li>
           <li>
-            <a href="/cursos"><i class="pe-7s-user"></i><p>Cursos</p></a>
+            <a href="/cursos"><i class="pe-7s-notebook"></i><p>Cursos</p></a>
           </li>
           <li>
-            <a href="/carreras"><i class="pe-7s-user"></i><p>Carreras</p></a>
+            <a href="/carreras"><i class="pe-7s-study"></i><p>Carreras</p></a>
           </li>
           <li>
             <a href="/perfiles"><i class="pe-7s-id"></i><p>Perfiles</p></a>

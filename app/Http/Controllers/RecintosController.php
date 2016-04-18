@@ -33,7 +33,9 @@ class RecintosController extends Controller
   */
   public function create()
   {
-    //
+    $sedes    = $this->sede->all();
+    $horarios = $this->horario->all();
+    return view('recintos.create', compact('sedes', 'horarios'));
   }
 
   /**
@@ -44,18 +46,8 @@ class RecintosController extends Controller
   */
   public function store(Request $request)
   {
-    //
-  }
-
-  /**
-  * Display the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function show($id)
-  {
-
+    $this->recinto->create($request->all());
+    return redirect('recintos');
   }
 
   /**
@@ -66,7 +58,10 @@ class RecintosController extends Controller
   */
   public function edit($id)
   {
-    //
+    $recinto =$this->recinto->find($id);
+    $horarios = $this->horario->all();
+    $sedes = $this->sede->all();
+    return view('recintos.edit', compact('recinto','horarios', 'sedes'));
   }
 
   /**
@@ -78,7 +73,8 @@ class RecintosController extends Controller
   */
   public function update(Request $request, $id)
   {
-    //
+     $this->recinto->find($id)->update($request->all());
+     return redirect('recintos');
   }
 
   /**
@@ -89,7 +85,8 @@ class RecintosController extends Controller
   */
   public function destroy($id)
   {
-    
+    $this->recinto->find($id)->delete();
+    return redirect('recintos');
   }
 
   public function AulasPorRecintos($id) {

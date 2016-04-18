@@ -10,14 +10,13 @@
     </div>
     <div class="content table-responsive table-full-width">
         <table class="table table-hover table-striped">
-
-            <thead>                <th>Nombre de recinto</th>
+            <thead>                
+                <th>Nombre de recinto</th>
                 <th>Dirección</th>
                 <th>Horario</th>
                 <th>Sede</th>
-                <td>Acciones</td>
+                <th>Acciones</th>
             </thead>
-
             <tbody>
                 @foreach ($recintos as $recinto)
                 <tr>
@@ -26,7 +25,7 @@
                     <td>{{$recinto->horario}}</td>
                     <td>{{$recinto->sede}}</td>
                     <td class="fixed col-sm-2">
-                    <a href='/recintos/{{$recinto->id}}/edit' class="btn btn-warning btn-xs col-sm-3" href="edit.html">
+                        <a href='/recintos/{{$recinto->id}}/edit' class="btn btn-warning btn-xs col-sm-3" href="edit.html">
                             <i class="pe-7s-pen"></i></a>
                             <form action="/recintos/{{$recinto->id}}" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">

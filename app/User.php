@@ -26,5 +26,12 @@ class User extends Authenticatable
     public function perfil(){
       return $this->hasOne('App\Perfil', 'id', 'perfil_id');
     }
-}
 
+    public function getTeachers()
+    {
+       return $this->where('es_docente', '=', true)
+                  ->select('users.*')->get();
+    }
+
+
+}

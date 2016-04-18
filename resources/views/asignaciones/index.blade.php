@@ -2,10 +2,10 @@
 @section('content')
 <div class="card">
     <div class="header">
-        <a href="/asignacines/create">
+        <a href="/asignaciones/create">
             <button class="btn btn-info btn-fill pull-right">Nuevo asignacion</button>
         </a>
-        <h4 class="title">asignacines</h4>
+        <h4 class="title">asignaciones</h4>
         <p class="category">Mantenimiento de asignacines</p>
     </div>
     <div class="content table-responsive table-full-width">
@@ -16,10 +16,16 @@
                 <th>Acciones</th>
             </thead>
             <tbody>
+
              @foreach ($asignaciones as $asignacion)
              <tr>
-                <td>{{$asignacion->usuario}}</td>                
-                <td>{{$asignacion->curso}} - {{$asignacion->carrera}}</td>                
+
+                <td>{{$asignacion->usuario}}</td>
+@foreach($curso_carreras as $curso)
+@if($asignacion->curso == $curso->curso_id && $asignacion->carrera ==$curso->carrera_id)
+                <td>{{$curso->carrera}} - {{$curso->curso}}</td>
+                @endif
+                @endforeach
                 <td class="fixed col-sm-2">
                     <a href='/asignaciones/{{$asignacion->id}}/edit' class="btn btn-warning btn-xs col-sm-2" href="edit.html">
                     <i class="pe-7s-pen"></i></a>
@@ -28,7 +34,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <button type="submit" class="btn btn-danger btn-xs">
                             <i class="pe-7s-trash"></i>
-                            
+
                       </button>
                   </form>
               </td>
@@ -41,6 +47,6 @@
     <hr>
     {{$asignaciones->links()}}
 </div>
-</div> 
+</div>
 
 @endsection

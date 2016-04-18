@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\User;
 use App\UsuarioCursoCarrera;
 use App\CursoCarrera;
+use App\Curso;
+use App\Carrera;
+
 class UsuarioCursoCarrerasController extends Controller
 {
     protected $user, $cursocarrera, $uccarrera;
@@ -24,9 +27,10 @@ class UsuarioCursoCarrerasController extends Controller
      */
     public function index()
     {
-        $asignaciones = $this->uccarrera->getAll();
-        dd($asignaciones);
-        return view('asignaciones.index', compact('asignaciones'));
+        $asignaciones   = $this->uccarrera->getAll();
+        $curso_carreras = $this->cursocarrera->cursoCarrerasAll();
+
+        return view('asignaciones.index', compact('asignaciones','curso_carreras'));
     }
 
     /**
@@ -36,7 +40,9 @@ class UsuarioCursoCarrerasController extends Controller
      */
     public function create()
     {
-        //
+      $profesores = $this->user->getTeachers();
+      $curso_carreras = $this->cursocarrera->cursoCarrerasAll();
+      return view('asignaciones.create', compact('profesores','curso_carreras'));
     }
 
     /**
@@ -47,7 +53,11 @@ class UsuarioCursoCarrerasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $uccarrera = $this->uccarrera;
+      $uccarrera->usuario_id = $request->usuario_id;
+      $uccarrera->curso_carrera_id  = $request->curso_carrera_id;
+      $uccarrera->save();
+      return redirect('asignaciones');
     }
 
     /**
@@ -69,7 +79,11 @@ class UsuarioCursoCarrerasController extends Controller
      */
     public function edit($id)
     {
-        //
+  $uccarrera = $this->uccarrera->find($id);
+  $profesores = $this->user->getTeachers();
+  $curso_carreras = $this->cursocarrera->cursoCarrerasAll();
+  return view('asignaciones.create', compact('profesores','curso_carreras','uccarrera'));
+
     }
 
     /**
@@ -81,7 +95,11 @@ class UsuarioCursoCarrerasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $uccarrera = $this->uccarrera->find($id);
+      $uccarrera->usuario_id = $request->usuario_id;
+      $uccarrera->curso_carrera_id  = $request->curso_carrera_id;
+      $uccarrera->save();
+      return redirect('asignaciones');
     }
 
     /**

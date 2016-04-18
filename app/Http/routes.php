@@ -15,7 +15,7 @@ Route::get('login', 'Auth\AuthController@getLogin');
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('logout', 'Auth\AuthController@logout');
     Route::get('/', function () { return redirect('/reservaciones'); });
-    Route::get('/home', function () { return redirect('/reservaciones'););
+    Route::get('/home', function () { return redirect('/reservaciones'); });
     Route::get('/sedes/{id}/recintos', 'SedesController@RecintosPorSede');
     Route::get('/recintos/{id}/aulas', 'RecintosController@AulasPorRecintos');
     Route::resource('/reservaciones', 'ReservacionesController');

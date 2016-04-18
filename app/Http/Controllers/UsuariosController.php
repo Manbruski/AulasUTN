@@ -11,7 +11,7 @@ use Hash;
 use Mail;
 class UsuariosController extends Controller
 {
-    protected $usuario, $perfil; 
+    protected $usuario, $perfil;
 
     public function __construct(User $usuario, Perfil $perfil){
         $this->usuario = $usuario;
@@ -34,7 +34,7 @@ class UsuariosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
         $usuarios = $this->usuario->with('perfil')->orderBy('id')->paginate(7);
         return view('usuarios.index', compact('usuarios'));
     }
@@ -118,7 +118,7 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      //
     }
 
     /**
@@ -133,4 +133,22 @@ class UsuariosController extends Controller
 
         return redirect('usuarios');
     }
+    public function actualizar($id)
+    {
+        $usuario = $this->usuario->find($id);
+        return view('usuarios.editU',compact('usuario'));
+    }
+    public function updateU(Request $request, $id)
+    {
+      
+      $usuario = $this->usuario->find($id);
+      $usuario->name = $request->name;
+      $usuario->celular = $request->celular;
+      if ($request->password!="") {
+      $usuario->password = Hash::make($request->password);
+      }
+      $usuario->save();
+      return redirect('reservaciones');
+    }
+
 }

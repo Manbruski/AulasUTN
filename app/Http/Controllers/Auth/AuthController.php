@@ -42,7 +42,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-       $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
     /**
@@ -114,6 +114,7 @@ class AuthController extends Controller
         }
 
         $this->create($request->all());
+        
         $data = array(
             'name' => $request->name,
             'password'=>$password,

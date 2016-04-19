@@ -5,8 +5,8 @@
         <a href="/asignaciones/create">
             <button class="btn btn-info btn-fill pull-right">Nuevo asignacion</button>
         </a>
-        <h4 class="title">asignaciones</h4>
-        <p class="category">Mantenimiento de asignacines</p>
+        <h4 class="title">Asignaciones</h4>
+        <p class="category">Mantenimiento de Asignacines</p>
     </div>
     <div class="content table-responsive table-full-width">
         <table class="table table-hover table-striped">
@@ -16,13 +16,11 @@
                 <th>Acciones</th>
             </thead>
             <tbody>
-
              @foreach ($asignaciones as $asignacion)
              <tr>
-
                 <td>{{$asignacion->usuario}}</td>
-@foreach($curso_carreras as $curso)
-@if($asignacion->curso == $curso->curso_id && $asignacion->carrera ==$curso->carrera_id)
+                  @foreach($curso_carreras as $curso)
+                  @if($asignacion->curso == $curso->curso_id && $asignacion->carrera ==$curso->carrera_id)
                 <td>{{$curso->carrera}} - {{$curso->curso}}</td>
                 @endif
                 @endforeach

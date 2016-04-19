@@ -78,11 +78,10 @@ class UsuarioCursoCarrerasController extends Controller
      */
     public function edit($id)
     {
-  $uccarrera = $this->uccarrera->find($id);
-  $profesores = $this->user->getTeachers();
-  $curso_carreras = $this->cursocarrera->cursoCarrerasAll();
-  return view('asignaciones.create', compact('profesores','curso_carreras','uccarrera'));
-
+      $uccarrera = $this->uccarrera->getCursoCarreras($id);
+      $profesores = $this->user->getTeachers();
+      $curso_carreras = $this->cursocarrera->cursoCarrerasAll();
+      return view('asignaciones.edit', compact('profesores','curso_carreras','uccarrera'));
     }
 
     /**

@@ -58,6 +58,7 @@ class PeriodosController extends Controller
     public function edit($id)
     {
         $periodo = $this->periodo->find('id');
+          return view('periodos.edit', compact('periodo'));
     }
 
     /**

@@ -22,7 +22,7 @@ class UsuariosController extends Controller
     {
         return Validator::make($data, [
             'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',//|regex:/(.*)\@utn\.ac\.cr$/i',
+            'email'    => 'required|email|max:255|unique:users|regex:/(.*)\@utn\.ac\.cr$/i',
             'password' => 'required|min:6|confirmed',
             'celular'  => 'required',
             ]);

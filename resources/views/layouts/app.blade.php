@@ -36,6 +36,12 @@
             <a href="/cursos"><i class="pe-7s-notebook"></i><p>Cursos</p></a>
           </li>
           <li>
+            <a href="/asignaciones"><i class="pe-7s-news-paper"></i><p>Asignaciones</p></a>
+          </li>
+          <li>
+            <a href="/cursos_carreras"><i class="pe-7s-display2"></i><p>Asignaciones</p></a>
+          </li>
+          <li>
             <a href="/carreras"><i class="pe-7s-study"></i><p>Carreras</p></a>
           </li>
           <li>

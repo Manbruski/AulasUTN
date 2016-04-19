@@ -3,11 +3,11 @@
 @section('content')
 <div class="card col-md-8 col-md-offset-2">
   <div class="header">
-    <h4 class="title">Asignacion</h4>
-    <p class="category">Crear nueva Asignacion</p>
+    <h4 class="title">Asignación</h4>
+    <p class="category">Editar Asignación</p>
   </div>
   <div class="content">
-    <form action="/asignaciones/{{$carrera->id}}" method="POST">
+    <form action="/asignaciones/{{$uccarrera->id}}" method="POST">
        <input type="hidden" name="_method" value="PUT">
        <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="row">
@@ -16,19 +16,23 @@
             <label>Profesor:</label>
             <select name="usuario_id" class="form-control" required="required">
             @foreach($profesores as $prof)
-            @if(prof->id === $uccarrera->usuario)
-            <option value="{{$uccarrera->usuario}}" selected>{{$prof->nombre}}</option>
-            @else
-            <option value="{{$prof->id}}" >{{$prof->nombre}}</option>
-            @endif
+              @if($prof->id === $uccarrera->usuario_id)
+                <option value="{{$uccarrera->usuario_id}}" selected>{{$prof->name}}</option>
+              @else
+                <option value="{{$prof->id}}" >{{$prof->name}}</option>
+              @endif
             @endforeach
             </select>
           </div>
           <div class="form-group ">
             <label>Carrera:</label>
             <select name="curso_carrera_id" class="form-control" required="required">
-            @foreach($curso_carreras as $curso)
-              <option value="{{$curso->id}}">{{$curso->curso}} - {{$curso->carrera}}</option>
+              @foreach($curso_carreras as $curso)
+                @if($curso->id === $uccarrera->curso_carrera_id)
+                  <option value="{{$curso->id}}" selected>{{$curso->carrera}} - {{$curso->curso}}</option>
+                @else
+                  <option value="{{$curso->id}}" >{{$curso->carrera}} - {{$curso->curso}}</option>
+                @endif
               @endforeach
             </select>
           </div>

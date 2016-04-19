@@ -3,8 +3,8 @@
 @section('content')
 <div class="card col-md-8 col-md-offset-2">
   <div class="header">
-    <h4 class="title">Curso-Carrera</h4>
-    <p class="category">Crear nuevo Curso-Carrera</p>
+    <h4 class="title">Asignación</h4>
+    <p class="category">Crear nueva Asignación</p>
   </div>
   <div class="content">
     <form action="/asignaciones" method="POST">
